@@ -117,7 +117,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-white/95 backdrop-blur-md py-4 shadow-sm' : 'bg-transparent py-6'}`}>
+      <nav className={`fixed top-0 left-0 w-full z-50 transition-[background-color,padding,box-shadow,backdrop-filter] duration-500 will-change-[background-color,padding] ${isScrolled ? 'bg-white/95 backdrop-blur-md py-4 shadow-sm' : 'bg-transparent py-6'}`}>
         <div className="max-w-[1800px] mx-auto px-8 flex justify-between items-center">
           {/* Left Menu */}
           <div className="hidden lg:flex items-center gap-8">
@@ -125,7 +125,7 @@ const Navbar = () => {
               <a 
                 key={item} 
                 href={`#${item.toLowerCase().replace(/\s/g, '-')}`} 
-                className={`text-[10px] uppercase tracking-[0.4em] font-light transition-colors ${isScrolled ? 'text-brand-dark hover:text-brand-blue' : 'text-white/80 hover:text-white'}`}
+                className={`text-[10px] uppercase tracking-[0.4em] font-light transition-colors duration-300 ${isScrolled ? 'text-brand-dark hover:text-brand-blue' : 'text-white/80 hover:text-white'}`}
               >
                 {item}
               </a>
@@ -296,13 +296,13 @@ const Hero = () => {
 
   return (
     <section className="relative h-screen w-full overflow-hidden bg-hero-bg">
-      <AnimatePresence mode="wait">
+      <AnimatePresence>
         <motion.div 
           key={currentIndex}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1.5 }}
+          transition={{ duration: 1.2 }}
           className="absolute inset-0"
         >
           <img 
@@ -375,38 +375,38 @@ const Hero = () => {
         >
           <a 
             href="mailto:sergiomoura@hubnogueira.com.br" 
-            className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand-dark hover:bg-brand-blue hover:text-white hover:scale-110 hover:-rotate-6 transition-all duration-500 shadow-xl group"
+            className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand-dark hover:bg-brand-blue hover:text-white hover:scale-110 hover:-rotate-6 transition-[background-color,transform,color] duration-300 shadow-xl group will-change-transform"
             title="E-mail"
           >
-            <Mail size={20} className="group-hover:scale-110 transition-transform" />
+            <Mail size={20} className="group-hover:scale-110 transition-transform duration-300" />
           </a>
           <a 
             href="tel:8130193333" 
-            className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand-dark hover:bg-brand-blue hover:text-white hover:scale-110 hover:rotate-6 transition-all duration-500 shadow-xl group"
+            className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand-dark hover:bg-brand-blue hover:text-white hover:scale-110 hover:rotate-6 transition-[background-color,transform,color] duration-300 shadow-xl group will-change-transform"
             title="Telefone"
           >
-            <Phone size={20} className="group-hover:scale-110 transition-transform" />
+            <Phone size={20} className="group-hover:scale-110 transition-transform duration-300" />
           </a>
           <a 
             href="https://wa.me/558130193333" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand-dark hover:bg-brand-blue hover:text-white hover:scale-110 hover:-rotate-6 transition-all duration-500 shadow-xl group"
+            className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand-dark hover:bg-brand-blue hover:text-white hover:scale-110 hover:-rotate-6 transition-[background-color,transform,color] duration-300 shadow-xl group will-change-transform"
             title="WhatsApp"
           >
-            <MessageCircle size={20} className="group-hover:scale-110 transition-transform" />
+            <MessageCircle size={20} className="group-hover:scale-110 transition-transform duration-300" />
           </a>
           <a 
             href="https://meuprontopramorar.com.br" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="w-12 h-12 bg-[#f45e0b] rounded-full flex items-center justify-center text-white hover:scale-115 hover:rotate-12 transition-all duration-500 shadow-xl p-2 overflow-hidden border border-[#f45e0b]/20 group"
+            className="w-12 h-12 bg-[#f45e0b] rounded-full flex items-center justify-center text-white hover:scale-115 hover:rotate-12 transition-[background-color,transform,color] duration-300 shadow-xl p-2 overflow-hidden border border-[#f45e0b]/20 group will-change-transform"
             title="Pronto pra Morar"
           >
             <img 
               src="https://meuprontopramorar.com.br/logo.svg" 
               alt="Pronto pra Morar" 
-              className="w-full h-full object-contain brightness-0 invert group-hover:scale-110 transition-transform"
+              className="w-full h-full object-contain brightness-0 invert group-hover:scale-110 transition-transform duration-300"
               referrerPolicy="no-referrer"
             />
           </a>
@@ -428,8 +428,8 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="group bg-white border border-gray-100 rounded-[24px] overflow-hidden hover:shadow-2xl hover:shadow-brand-blue/10 transition-all duration-700 flex flex-col"
+      transition={{ duration: 0.6, delay: index * 0.05 }}
+      className="group bg-white border border-gray-100 rounded-[24px] overflow-hidden hover:shadow-2xl hover:shadow-brand-blue/10 transition-[box-shadow,transform] duration-300 flex flex-col will-change-[box-shadow,transform]"
     >
       <div className="relative aspect-square overflow-hidden p-5">
         <img 
@@ -461,7 +461,7 @@ const PropertyCard = ({ property, index }: PropertyCardProps) => {
           {property.location}
         </p>
         
-        <div className="mt-8 flex items-center gap-6 opacity-0 group-hover:opacity-100 transition-all duration-700 transform translate-y-4 group-hover:translate-y-0">
+        <div className="mt-8 flex items-center gap-6 opacity-0 group-hover:opacity-100 transition-[opacity,transform] duration-500 transform translate-y-4 group-hover:translate-y-0">
           <div className="flex items-center gap-2 text-gray-500">
             <Maximize2 size={14} className="text-brand-blue/40" />
             <span className="text-[10px] font-light uppercase tracking-widest">{property.area}</span>
@@ -554,7 +554,7 @@ const Manifesto = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 0.8 }}
           >
             <div className="flex items-center gap-4 mb-8">
               <div className="w-12 h-[1px] bg-white/30" />
@@ -592,7 +592,7 @@ const Manifesto = () => {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1.2 }}
+            transition={{ duration: 1 }}
             className="relative"
           >
             <div className="relative aspect-[3/4] overflow-hidden rounded-[40px] shadow-2xl">
