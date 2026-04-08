@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   MapPin, 
@@ -13,8 +13,6 @@ import {
   X,
   ChevronRight,
   ChevronLeft,
-  Search,
-  Bell,
   Mail,
   Phone,
   MessageCircle
@@ -152,13 +150,6 @@ const Navbar = () => {
             </div>
             
             <div className={`flex items-center gap-4 ${isScrolled ? 'text-brand-dark' : 'text-white'}`}>
-              <button className="hover:text-brand-blue transition-colors relative">
-                <Bell size={18} />
-                <div className="absolute top-0 right-0 w-1.5 h-1.5 bg-brand-blue rounded-full" />
-              </button>
-              <button className="hover:text-brand-blue transition-colors">
-                <Search size={18} />
-              </button>
               <button className="lg:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
                 {isMenuOpen ? <X /> : <Menu />}
               </button>
@@ -268,11 +259,15 @@ const Navbar = () => {
                   referrerPolicy="no-referrer"
                 />
                 <div className="flex gap-10 text-white/30">
-                  <a href="https://www.instagram.com/nogueiravendadeimoveis" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.instagram.com/nogueiravendadeimoveis/" target="_blank" rel="noopener noreferrer">
                     <Instagram size={18} className="hover:text-brand-blue cursor-pointer transition-all duration-500" />
                   </a>
-                  <Facebook size={18} className="hover:text-brand-blue cursor-pointer transition-all duration-500" />
-                  <Linkedin size={18} className="hover:text-brand-blue cursor-pointer transition-all duration-500" />
+                  <a href="https://www.facebook.com/nogueiracorretores" target="_blank" rel="noopener noreferrer">
+                    <Facebook size={18} className="hover:text-brand-blue cursor-pointer transition-all duration-500" />
+                  </a>
+                  <a href="https://www.linkedin.com/company/nogueira-venda-de-imoveis/" target="_blank" rel="noopener noreferrer">
+                    <Linkedin size={18} className="hover:text-brand-blue cursor-pointer transition-all duration-500" />
+                  </a>
                 </div>
               </div>
             </motion.div>
@@ -378,23 +373,43 @@ const Hero = () => {
           animate={{ opacity: 1, x: 0 }}
           className="flex flex-col gap-3"
         >
-          <button className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand-dark hover:bg-brand-blue hover:text-white transition-all shadow-xl">
-            <Mail size={20} />
-          </button>
-          <button className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand-dark hover:bg-brand-blue hover:text-white transition-all shadow-xl">
-            <Phone size={20} />
-          </button>
-          <button className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand-dark hover:bg-brand-blue hover:text-white transition-all shadow-xl">
-            <MessageCircle size={20} />
-          </button>
-          <button className="w-12 h-12 bg-brand-dark rounded-full flex items-center justify-center text-white hover:bg-brand-blue transition-all shadow-xl p-3 overflow-hidden">
+          <a 
+            href="mailto:sergiomoura@hubnogueira.com.br" 
+            className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand-dark hover:bg-brand-blue hover:text-white hover:scale-110 hover:-rotate-6 transition-all duration-500 shadow-xl group"
+            title="E-mail"
+          >
+            <Mail size={20} className="group-hover:scale-110 transition-transform" />
+          </a>
+          <a 
+            href="tel:8130193333" 
+            className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand-dark hover:bg-brand-blue hover:text-white hover:scale-110 hover:rotate-6 transition-all duration-500 shadow-xl group"
+            title="Telefone"
+          >
+            <Phone size={20} className="group-hover:scale-110 transition-transform" />
+          </a>
+          <a 
+            href="https://wa.me/558130193333" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand-dark hover:bg-brand-blue hover:text-white hover:scale-110 hover:-rotate-6 transition-all duration-500 shadow-xl group"
+            title="WhatsApp"
+          >
+            <MessageCircle size={20} className="group-hover:scale-110 transition-transform" />
+          </a>
+          <a 
+            href="https://meuprontopramorar.com.br" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="w-12 h-12 bg-[#f45e0b] rounded-full flex items-center justify-center text-white hover:scale-115 hover:rotate-12 transition-all duration-500 shadow-xl p-2 overflow-hidden border border-[#f45e0b]/20 group"
+            title="Pronto pra Morar"
+          >
             <img 
-              src="https://i.postimg.cc/vghmcW6V/logo-branca.png" 
-              alt="Nogueira Vendas" 
-              className="w-full h-full object-contain"
+              src="https://meuprontopramorar.com.br/logo.svg" 
+              alt="Pronto pra Morar" 
+              className="w-full h-full object-contain brightness-0 invert group-hover:scale-110 transition-transform"
               referrerPolicy="no-referrer"
             />
-          </button>
+          </a>
         </motion.div>
       </div>
     </section>
@@ -590,15 +605,7 @@ const Manifesto = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-brand-blue/80 to-transparent" />
             </div>
             
-            {/* Sophisticated Logo Placement instead of the "bola" */}
-            <div className="absolute -bottom-6 -right-6 bg-white p-10 rounded-[30px] shadow-2xl z-20 hidden md:block border border-gray-100">
-              <img 
-                src="https://i.postimg.cc/QF7xpLT3/logo-azul.png" 
-                alt="Nogueira Vendas" 
-                className="h-10 w-auto object-contain"
-                referrerPolicy="no-referrer"
-              />
-            </div>
+            {/* Sophisticated Logo Placement removed as requested */}
           </motion.div>
         </div>
       </div>
@@ -607,6 +614,50 @@ const Manifesto = () => {
 };
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    interest: 'Comprar para Morar',
+    message: ''
+  });
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('loading');
+
+    const bitrixUrl = "https://hubnogueira.bitrix24.com.br/rest/1326/d3x2401nf7j6sq8h/batch.json";
+    
+    const payload = {
+      cmd: {
+        contato: `crm.contact.add?fields[NAME]=${formData.name}&fields[PHONE][0][VALUE]=${formData.phone}&fields[PHONE][0][VALUE_TYPE]=WORK&fields[EMAIL][0][VALUE]=${formData.email}&fields[EMAIL][0][VALUE_TYPE]=WORK&fields[COMMENTS]=Interesse: ${formData.interest}. Mensagem: ${formData.message}`,
+        negocio: `crm.deal.add?fields[TITLE]=Lead - ${formData.name}&fields[CATEGORY_ID]=16&fields[CONTACT_ID]=$result[contato]&fields[UF_CRM_1775571651119]=${formData.name}&fields[UF_CRM_1775572034300]=${formData.phone}&fields[UF_CRM_1775572268751]=${formData.email}&fields[UF_CRM_1726667595972]=Portal |  Nogueira Venda`
+      }
+    };
+
+    try {
+      const response = await fetch(bitrixUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setFormData({ name: '', email: '', phone: '', interest: 'Comprar para Morar', message: '' });
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      console.error('Error submitting to Bitrix:', error);
+      setStatus('error');
+    }
+  };
+
   return (
     <section id="contato" className="py-32 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
@@ -637,7 +688,7 @@ const Contact = () => {
                 <div>
                   <div className="text-[9px] uppercase tracking-[0.3em] text-gray-400 mb-1 font-light">Social</div>
                   <a 
-                    href="https://www.instagram.com/nogueiravendadeimoveis" 
+                    href="https://www.instagram.com/nogueiravendadeimoveis/" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-brand-dark font-light tracking-wide hover:text-brand-blue transition-colors"
@@ -649,33 +700,101 @@ const Contact = () => {
             </div>
           </div>
           
-          <form className="space-y-8 bg-gray-50 p-8 md:p-12">
+          <form onSubmit={handleSubmit} className="space-y-8 bg-gray-50 p-8 md:p-12 relative">
+            {status === 'success' && (
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="absolute inset-0 bg-white/90 backdrop-blur-sm z-10 flex flex-col items-center justify-center text-center p-8"
+              >
+                <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6">
+                  <ArrowRight className="rotate-[-45deg]" size={32} />
+                </div>
+                <h3 className="text-2xl font-light text-brand-dark mb-2 uppercase tracking-widest">Solicitação Enviada</h3>
+                <p className="text-gray-500 font-light">Em breve um de nossos consultores entrará em contato.</p>
+                <button 
+                  type="button"
+                  onClick={() => setStatus('idle')}
+                  className="mt-8 text-[10px] uppercase tracking-[0.3em] text-brand-blue font-medium"
+                >
+                  Enviar outra mensagem
+                </button>
+              </motion.div>
+            )}
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-2">
                 <label className="text-[9px] uppercase tracking-[0.3em] text-gray-400 font-light">Nome Completo</label>
-                <input type="text" className="w-full bg-transparent border-b border-gray-200 py-2 focus:outline-none focus:border-brand-blue transition-colors font-light" placeholder="Seu nome" />
+                <input 
+                  required
+                  type="text" 
+                  value={formData.name}
+                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  className="w-full bg-transparent border-b border-gray-200 py-2 focus:outline-none focus:border-brand-blue transition-colors font-light" 
+                  placeholder="Seu nome" 
+                />
               </div>
               <div className="space-y-2">
                 <label className="text-[9px] uppercase tracking-[0.3em] text-gray-400 font-light">E-mail</label>
-                <input type="email" className="w-full bg-transparent border-b border-gray-200 py-2 focus:outline-none focus:border-brand-blue transition-colors font-light" placeholder="seu@email.com" />
+                <input 
+                  required
+                  type="email" 
+                  value={formData.email}
+                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  className="w-full bg-transparent border-b border-gray-200 py-2 focus:outline-none focus:border-brand-blue transition-colors font-light" 
+                  placeholder="seu@email.com" 
+                />
               </div>
             </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-2">
+                <label className="text-[9px] uppercase tracking-[0.3em] text-gray-400 font-light">Telefone</label>
+                <input 
+                  required
+                  type="tel" 
+                  value={formData.phone}
+                  onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                  className="w-full bg-transparent border-b border-gray-200 py-2 focus:outline-none focus:border-brand-blue transition-colors font-light" 
+                  placeholder="(00) 00000-0000" 
+                />
+              </div>
               <div className="space-y-2">
                 <label className="text-[9px] uppercase tracking-[0.3em] text-gray-400 font-light">Interesse</label>
-                <select className="w-full bg-transparent border-b border-gray-200 py-2 focus:outline-none focus:border-brand-blue transition-colors appearance-none font-light">
+                <select 
+                  value={formData.interest}
+                  onChange={(e) => setFormData({...formData, interest: e.target.value})}
+                  className="w-full bg-transparent border-b border-gray-200 py-2 focus:outline-none focus:border-brand-blue transition-colors appearance-none font-light"
+                >
                   <option>Comprar para Morar</option>
                   <option>Investimento Imobiliário</option>
                   <option>Lançamentos Exclusivos</option>
                   <option>Outros Interesses</option>
                 </select>
               </div>
+            </div>
+
             <div className="space-y-2">
               <label className="text-[9px] uppercase tracking-[0.3em] text-gray-400 font-light">Mensagem</label>
-              <textarea rows={4} className="w-full bg-transparent border-b border-gray-200 py-2 focus:outline-none focus:border-brand-blue transition-colors resize-none font-light" placeholder="Como podemos ajudar?" />
+              <textarea 
+                rows={4} 
+                value={formData.message}
+                onChange={(e) => setFormData({...formData, message: e.target.value})}
+                className="w-full bg-transparent border-b border-gray-200 py-2 focus:outline-none focus:border-brand-blue transition-colors resize-none font-light" 
+                placeholder="Como podemos ajudar?" 
+              />
             </div>
-            <button className="w-full py-4 bg-brand-dark text-white uppercase tracking-[0.3em] text-[10px] font-light hover:bg-brand-blue transition-colors">
-              Enviar Solicitação
+
+            <button 
+              disabled={status === 'loading'}
+              className="w-full py-4 bg-brand-dark text-white uppercase tracking-[0.3em] text-[10px] font-light hover:bg-brand-blue transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {status === 'loading' ? 'Enviando...' : 'Enviar Solicitação'}
             </button>
+            
+            {status === 'error' && (
+              <p className="text-red-500 text-[10px] uppercase tracking-widest text-center">Ocorreu um erro. Tente novamente.</p>
+            )}
           </form>
         </div>
       </div>
@@ -696,46 +815,44 @@ const Footer = () => {
           />
           
           <div className="flex gap-8">
-            <a href="https://www.instagram.com/nogueiravendadeimoveis" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.instagram.com/nogueiravendadeimoveis/" target="_blank" rel="noopener noreferrer">
               <Instagram className="hover:text-brand-blue cursor-pointer transition-colors" size={20} />
             </a>
-            <Facebook className="hover:text-brand-blue cursor-pointer transition-colors" size={20} />
-            <Linkedin className="hover:text-brand-blue cursor-pointer transition-colors" size={20} />
+            <a href="https://www.facebook.com/nogueiracorretores" target="_blank" rel="noopener noreferrer">
+              <Facebook className="hover:text-brand-blue cursor-pointer transition-colors" size={20} />
+            </a>
+            <a href="https://www.linkedin.com/company/nogueira-venda-de-imoveis/" target="_blank" rel="noopener noreferrer">
+              <Linkedin className="hover:text-brand-blue cursor-pointer transition-colors" size={20} />
+            </a>
           </div>
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-sm">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-sm">
           <div className="space-y-4">
-            <div className="text-white font-light uppercase tracking-[0.3em] text-[9px]">Empresa</div>
+            <div className="text-white font-light uppercase tracking-[0.3em] text-[9px]">Institucional</div>
             <ul className="space-y-2 text-[11px] font-light">
-              <li>Sobre Nós</li>
-              <li>Carreiras</li>
-              <li>Imprensa</li>
-            </ul>
-          </div>
-          <div className="space-y-4">
-            <div className="text-white font-light uppercase tracking-[0.3em] text-[9px]">Serviços</div>
-            <ul className="space-y-2 text-[11px] font-light">
-              <li>Venda</li>
-              <li>Consultoria</li>
-              <li>Avaliação</li>
+              <li><a href="#" className="hover:text-white transition-colors">Hub On</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Axis</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Nogueira Venda de Imóveis</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Pronto pra Morar</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">CredIm</a></li>
             </ul>
           </div>
           <div className="space-y-4">
             <div className="text-white font-light uppercase tracking-[0.3em] text-[9px]">Legal</div>
             <ul className="space-y-2 text-[11px] font-light">
-              <li>Privacidade</li>
-              <li>Termos</li>
-              <li>CRECI 11353-J</li>
+              <li>
+                <a 
+                  href="https://portal-de-consulta-lgpd.vercel.app/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  Lei Geral de Proteção de Dados
+                </a>
+              </li>
+              <li>CRECI 17135-J</li>
             </ul>
-          </div>
-          <div className="space-y-4">
-            <div className="text-white font-light uppercase tracking-[0.3em] text-[9px]">Newsletter</div>
-            <p className="text-[10px] leading-relaxed font-light">Receba novidades sobre lançamentos exclusivos.</p>
-            <div className="flex">
-              <input type="text" className="bg-white/5 border-none px-4 py-2 w-full focus:outline-none text-white text-xs font-light" placeholder="E-mail" />
-              <button className="bg-brand-blue text-white px-4 py-2"><ChevronRight size={16} /></button>
-            </div>
           </div>
         </div>
         
